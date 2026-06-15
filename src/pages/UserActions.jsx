@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 
 function UserActions() {
-  const [aktifForm, setAktifForm] = useState('register') // Varsayılan olarak haritadaki ilk kutu (Gönüllü Ol) açık gelsin
+  const [aktifForm, setAktifForm] = useState('register') 
   const [secilenRol, setSecilenRol] = useState('')
+  
+  // 🌟 Profil panelindeki aktif alt sekmeyi takip eden state
+  const [acikProfilSekme, setAcikProfilSekme] = useState(null)
 
   const inputStyle = {
     width: '100%',
@@ -28,21 +31,43 @@ function UserActions() {
     boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
   })
 
-  // Yan Menü Link Stili
-  const menuLinkStyle = {
+  // Profil Başlık Tıklama Fonksiyonu
+  const toggleProfilSekme = (sekmeAdi) => {
+    if (acikProfilSekme === sekmeAdi) {
+      setAcikProfilSekme(null)
+    } else {
+      setAcikProfilSekme(sekmeAdi)
+    }
+  }
+
+  // Ortak Menü Başlık Stili
+  const menuHeaderStyle = (isOpen) => ({
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
+    justifyContent: 'space-between',
     padding: '12px 15px',
     color: '#455a64',
     fontSize: '14px',
-    fontWeight: '500',
-    textDecoration: 'none',
+    fontWeight: '600',
     borderRadius: '8px',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: isOpen ? '#eceff1' : '#f8f9fa',
     border: '1px solid #cfd8dc',
     cursor: 'pointer',
     transition: 'all 0.2s'
+  })
+
+  // Alt Sekme İçerik Kutusu Stili
+  const subContentStyle = {
+    padding: '12px',
+    marginTop: '5px',
+    marginBottom: '10px',
+    borderRadius: '8px',
+    backgroundColor: '#fafafa',
+    border: '1px solid #e0e0e0',
+    fontSize: '13px',
+    color: '#37474f',
+    lineHeight: '1.5',
+    animation: 'fadeIn 0.2s ease-out'
   }
 
   return (
@@ -52,7 +77,7 @@ function UserActions() {
         Hesabınıza giriş yapın, gönüllü ağımıza katılın veya profil ayarlarınızı yönetin.
       </p>
 
-      {/* Üst Sekme Seçimi (Kayıt Ol ismi Gönüllü Ol olarak değiştirildi) */}
+      {/* Üst Sekme Seçimi */}
       <div style={{ display: 'flex', backgroundColor: '#eceff1', padding: '6px', borderRadius: '10px', marginBottom: '30px', maxWidth: '500px', margin: '0 auto 30px auto' }}>
         <button 
           onClick={() => setAktifForm('register')}
@@ -68,7 +93,7 @@ function UserActions() {
         </button>
       </div>
 
-      {/* GÖRSELDEKİ EKSİKSİZ DÜZEN: Formlar ve Profil Menüsü Yana Yana */}
+      {/* Ana Düzen */}
       <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'center' }}>
         
         {/* Sol/Orta Taraf: Aktif Form Alanı */}
@@ -122,9 +147,9 @@ function UserActions() {
 
         </div>
 
-        {/* 🌟 2. GÖRSELDEKİ EKSİKSİZ "PROFİL YAN MENÜSÜ" KUTUSU */}
+        {/* 🌟 YENİLENEN İNTERAKTİF PROFİL YAN MENÜSÜ (ALT SEKME ÖRNEKLERİYLE) */}
         <div style={{ 
-          flex: '1', minWidth: '260px', maxWidth: '320px', backgroundColor: '#fff', padding: '25px', 
+          flex: '1', minWidth: '280px', maxWidth: '340px', backgroundColor: '#fff', padding: '25px', 
           borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #e0e0e0',
           display: 'flex', flexDirection: 'column', gap: '10px'
         }}>
@@ -132,14 +157,71 @@ function UserActions() {
             ⚙️ Profil Paneli
           </h4>
           
-          <div style={menuLinkStyle}>👤 Profilim</div>
-          <div style={menuLinkStyle}>🤝 Destek Geçmişim</div>
-          <div style={menuLinkStyle}>🔔 Bildirimlerim</div>
-          <div style={menuLinkStyle}>🛠️ Ayarlar</div>
+          {/* 1. SEKMEYİ AÇ: PROFİLİM */}
+          <div>
+            <div onClick={() => toggleProfilSekme('profil')} style={menuHeaderStyle(acikProfilSekme === 'profil')}>
+              <span>👤 Profilim</span>
+              <span>{acikProfilSekme === 'profil' ? '▲' : '▼'}</span>
+            </div>
+            {acikProfilSekme === 'profil' && (
+              <div style={subContentStyle}>
+                <div><strong>📍 Mahalle:</strong> Cumhuriyet Mahallesi</div>
+                <div style={{ marginTop: '5px' }}><strong>🆔 Kullanıcı ID:</strong> #26385</div>
+              </div>
+            )}
+          </div>
+
+          {/* 2. SEKMEYİ AÇ: DESTEK GEÇMİŞİM */}
+          <div>
+            <div onClick={() => toggleProfilSekme('destek')} style={menuHeaderStyle(acikProfilSekme === 'destek')}>
+              <span>🤝 Destek Geçmişim</span>
+              <span>{acikProfilSekme === 'destek' ? '▲' : '▼'}</span>
+            </div>
+            {acikProfilSekme === 'destek' && (
+              <div style={subContentStyle}>
+                <div style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '5px' }}>📦 <strong>Erzak Paketi</strong> - Teslim Edildi (12.05.2026)</div>
+                <div style={{ marginTop: '5px' }}>📚 <strong>Kırtasiye Seti</strong> - Süreçte (04.06.2026)</div>
+              </div>
+            )}
+          </div>
+
+          {/* 3. SEKMEYİ AÇ: BİLDİRİMLERİM */}
+          <div>
+            <div onClick={() => toggleProfilSekme('bildirim')} style={menuHeaderStyle(acikProfilSekme === 'bildirim')}>
+              <span>🔔 Bildirimlerim</span>
+              <span>{acikProfilSekme === 'bildirim' ? '▲' : '▼'}</span>
+            </div>
+            {acikProfilSekme === 'bildirim' && (
+              <div style={subContentStyle}>
+                <div style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '5px' }}>📢 Muhtarınız yeni bir gıda ihtiyacı doğruladı.</div>
+                <div style={{ marginTop: '5px' }}>🎉 Üstlendiğiniz yakacak desteği hedefine ulaştı!</div>
+              </div>
+            )}
+          </div>
+
+          {/* 4. SEKMEYİ AÇ: AYARLAR */}
+          <div>
+            <div onClick={() => toggleProfilSekme('ayarlar')} style={menuHeaderStyle(acikProfilSekme === 'ayarlar')}>
+              <span>🛠️ Ayarlar</span>
+              <span>{acikProfilSekme === 'ayarlar' ? '▲' : '▼'}</span>
+            </div>
+            {acikProfilSekme === 'ayarlar' && (
+              <div style={subContentStyle}>
+                <div>📧 <strong>E-Posta Değiştir</strong></div>
+                <div style={{ marginTop: '5px' }}>🔑 <strong>Şifre Güncelleme</strong></div>
+              </div>
+            )}
+          </div>
           
-          <div style={{ ...menuLinkStyle, color: '#c62828', backgroundColor: '#ffebee', borderColor: '#ffcdd2', marginTop: '10px' }}>
+          {/* ÇIKIŞ BUTONU */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 15px',
+            color: '#c62828', fontSize: '14px', fontWeight: '600', borderRadius: '8px',
+            backgroundColor: '#ffebee', border: '1px solid #ffcdd2', cursor: 'pointer', marginTop: '10px'
+          }}>
             🚪 Çıkış Yap
           </div>
+
         </div>
 
       </div>
