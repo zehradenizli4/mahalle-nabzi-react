@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom' // Yönlendirme için ekledik
 
 function Home() {
+  const navigate = useNavigate() // Navigasyon fonksiyonunu tanımladık
+
   // Profesyonel Kart Stilleri
   const cardStyle = {
     flex: '1',
@@ -62,17 +65,25 @@ function Home() {
         <p style={{ fontSize: '18px', maxWidth: '700px', margin: '0 auto 25px auto', color: '#e8f5e9', lineHeight: '1.6' }}>
           MahalleNabzı, ihtiyaç sahipleriyle mahalle gönüllülerini muhtarlarımızın güvenli rehberliğinde bir araya getiren dijital bir köprüdür.
         </p>
+        
+        {/* Artık tıklandığında gerçekten yönlendiren butonlarımız */}
         <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-          <button style={{ backgroundColor: '#ffffff', color: '#1b5e20', border: 'none', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+          <button 
+            onClick={() => navigate('/kullanici')} 
+            style={{ backgroundColor: '#ffffff', color: '#1b5e20', border: 'none', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', transition: 'all 0.2s' }}
+          >
             🤝 Gönüllü Ol
           </button>
-          <button style={{ backgroundColor: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>
-            ℹ️ Nasıl Çalışır?
+          <button 
+            onClick={() => navigate('/kullanici')} 
+            style={{ backgroundColor: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.2s' }}
+          >
+            🔑 Giriş Yap
           </button>
         </div>
       </div>
 
-      {/* 📌 ÖNE ÇIKAN DEĞERLER (VİZYONUMUZ / PROJE TANITIMI) */}
+      {/* 📌 ÖNE ÇIKAN DEĞERLER (VİZYONUMUZ) */}
       <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px', fontWeight: '600' }}>
         Projenin Amacı ve Temel İlkeleri
       </h3>
@@ -97,7 +108,7 @@ function Home() {
 
         <div style={cardStyle}>
           <div style={{ fontSize: '32px', marginBottom: '10px' }}>👤</div>
-          <h4 style={{ margin: '0 0 10px 0', color: '#1b5e20', fontSize: '18px' }}>Hassasiyet and Anonimlik</h4>
+          <h4 style={{ margin: '0 0 10px 0', color: '#1b5e20', fontSize: '18px' }}>Hassasiyet ve Anonimlik</h4>
           <p style={{ margin: '0', color: '#546e7a', fontSize: '14px', lineHeight: '1.5' }}>
             İhtiyaç sahiplerinin gururunu ve gizliliğini korumak adına kişisel veriler tamamen anonim tutulur, sadece ihtiyaç türü listelenir.
           </p>
@@ -138,7 +149,7 @@ function Home() {
 
       </div>
 
-      {/* 📊 İSTATİSTİKLER (SİTE HARİTASINDAKİ EKSİK KISIM) */}
+      {/* 📊 İSTATİSTİKLER */}
       <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px', fontWeight: '600' }}>
         📊 Güncel Platform İstatistikleri
       </h3>
