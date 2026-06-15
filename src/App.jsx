@@ -1,17 +1,22 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import AnalysisMap from './pages/AnalysisMap' // Yeni ekledik
 
 function App() {
   return (
     <div>
-      {/* Her sayfada sabit duracak Navbar */}
       <Navbar />
       
-      {/* Şu an aktif olan sayfamız */}
       <Home />
       
-      <footer style={{ textAlign: 'center', padding: '20px', background: '#f1f1f1', marginTop: '20px' }}>
+      {/* Sayfalar arasına şık bir çizgi çekiyoruz */}
+      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
+      
+      {/* Yeni eklediğimiz sayfa */}
+      <AnalysisMap />
+      
+      <footer style={{ textAlign: 'center', padding: '20px', background: '#f1f1f1', marginTop: '40px' }}>
         <p>© 2026 MahalleNabzı Dijital Dayanışma Platformu</p>
       </footer>
     </div>
