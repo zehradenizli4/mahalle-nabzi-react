@@ -22,7 +22,8 @@ function PrivacySecurity() {
     }
   ]
 
-  const toggles Soru = (id) => {
+  // Boşluk hatası düzeltildi: toggleSoru birleşik yazıldı
+  const toggleSoru = (id) => {
     if (acikSoru === id) {
       setAcikSoru(null) // Açıksa kapat
     } else {
@@ -71,7 +72,7 @@ function PrivacySecurity() {
           >
             {/* Soru Başlığı (Tıklanabilir Alan) */}
             <div 
-              onClick={() => toggles Soru(item.id)}
+              onClick={() => toggleSoru(item.id)}
               style={{ padding: '15px 20px', backgroundColor: acikSoru === item.id ? '#f5f5f5' : '#fff', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: '600', color: '#37474f', transition: 'background 0.2s' }}
             >
               <span>{item.soru}</span>
