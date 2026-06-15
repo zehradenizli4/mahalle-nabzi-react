@@ -27,6 +27,20 @@ function Home() {
     fontSize: '18px'
   }
 
+  // İstatistik Kartı Özel Stili
+  const statCardStyle = {
+    flex: '1',
+    minWidth: '240px',
+    backgroundColor: '#ffffff',
+    padding: '20px',
+    borderRadius: '12px',
+    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    borderLeft: '4px solid #2e7d32',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px'
+  }
+
   return (
     <div style={{ animation: 'fadeIn 0.5s ease-in' }}>
       
@@ -58,12 +72,12 @@ function Home() {
         </div>
       </div>
 
-      {/* 📌 ÖNE ÇIKAN DEĞERLER (VİZYONUMUZ) */}
-      <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px' }}>
+      {/* 📌 ÖNE ÇIKAN DEĞERLER (VİZYONUMUZ / PROJE TANITIMI) */}
+      <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px', fontWeight: '600' }}>
         Projenin Amacı ve Temel İlkeleri
       </h3>
       
-      <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap', marginBottom: '5px' }}>
+      <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap', marginBottom: '40px' }}>
         
         <div style={cardStyle}>
           <div style={{ fontSize: '32px', marginBottom: '10px' }}>🤝</div>
@@ -83,7 +97,7 @@ function Home() {
 
         <div style={cardStyle}>
           <div style={{ fontSize: '32px', marginBottom: '10px' }}>👤</div>
-          <h4 style={{ margin: '0 0 10px 0', color: '#1b5e20', fontSize: '18px' }}>Hassasiyet ve Anonimlik</h4>
+          <h4 style={{ margin: '0 0 10px 0', color: '#1b5e20', fontSize: '18px' }}>Hassasiyet and Anonimlik</h4>
           <p style={{ margin: '0', color: '#546e7a', fontSize: '14px', lineHeight: '1.5' }}>
             İhtiyaç sahiplerinin gururunu ve gizliliğini korumak adına kişisel veriler tamamen anonim tutulur, sadece ihtiyaç türü listelenir.
           </p>
@@ -92,11 +106,11 @@ function Home() {
       </div>
 
       {/* ⚙️ SÜREÇ AKIŞI (NASIL ÇALIŞIR?) */}
-      <h3 style={{ fontSize: '24px', color: '#263238', marginTop: '50px', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px' }}>
+      <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px', fontWeight: '600' }}>
         Sistem Nasıl İşliyor?
       </h3>
 
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
+      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.02)', marginBottom: '40px' }}>
         
         <div style={{ flex: '1', minWidth: '200px' }}>
           <div style={stepCircleStyle}>1</div>
@@ -120,6 +134,31 @@ function Home() {
           <div style={stepCircleStyle}>4</div>
           <h5 style={{ margin: '0 0 5px 0', fontSize: '16px' }}>Gönüllü Desteği</h5>
           <p style={{ margin: '0', fontSize: '13px', color: '#607d8b' }}>Mahalle sakinleri ihtiyacı karşılar ve süreç başarıyla kapanır.</p>
+        </div>
+
+      </div>
+
+      {/* 📊 İSTATİSTİKLER (SİTE HARİTASINDAKİ EKSİK KISIM) */}
+      <h3 style={{ fontSize: '24px', color: '#263238', marginBottom: '20px', borderLeft: '5px solid #2e7d32', paddingLeft: '10px', fontWeight: '600' }}>
+        📊 Güncel Platform İstatistikleri
+      </h3>
+
+      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+        
+        <div style={statCardStyle}>
+          <div style={{ fontSize: '28px', backgroundColor: '#e8f5e9', padding: '10px', borderRadius: '50%' }}>📈</div>
+          <div>
+            <h4 style={{ margin: '0', color: '#2e7d32', fontSize: '22px' }}>1,248</h4>
+            <p style={{ margin: '3px 0 0 0', color: '#546e7a', fontSize: '14px' }}>Toplam Yardım Sayısı</p>
+          </div>
+        </div>
+
+        <div style={statCardStyle}>
+          <div style={{ fontSize: '28px', backgroundColor: '#e8f5e9', padding: '10px', borderRadius: '50%' }}>🏠</div>
+          <div>
+            <h4 style={{ margin: '0', color: '#2e7d32', fontSize: '22px' }}>385</h4>
+            <p style={{ margin: '3px 0 0 0', color: '#546e7a', fontSize: '14px' }}>Destek Gören Aile Sayısı</p>
+          </div>
         </div>
 
       </div>
