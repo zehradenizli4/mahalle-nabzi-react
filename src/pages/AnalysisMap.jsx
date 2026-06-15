@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
 function AnalysisMap() {
-  // Simüle edilmiş mahalle verileri (State yönetimi ile profesyonelleştiriyoruz)
+  // Simüle edilmiş mahalle verileri
   const [secilenMahalle, setSecilenMahalle] = useState('Cumhuriyet Mahallesi')
   const [filtre, setFiltre] = useState('Tümü')
 
-  const mahalle Verileri = {
+  // HATA DÜZELTİLDİ: mahalleVerileri birleşik yazıldı
+  const mahalleVerileri = {
     'Cumhuriyet Mahallesi': { gida: 12, yakacak: 8, egitim: 5, durum: '🔴 Kritik (25+ İhtiyaç)' },
     'Atatürk Mahallesi': { gida: 3, yakacak: 2, egitim: 7, durum: '🟡 Orta Seviye (12 İhtiyaç)' },
     '19 Mayıs Mahallesi': { gida: 1, yakacak: 0, egitim: 2, durum: '🟢 Düşük Seviye (3 İhtiyaç)' }
@@ -69,7 +70,6 @@ function AnalysisMap() {
           <p style={{ fontWeight: '600', color: '#37474f', margin: '0' }}>İnteraktif Coğrafi Harita Katmanı</p>
           <p style={{ fontSize: '13px', color: '#78909c', margin: '5px 0 0 0' }}>[ Google Maps / Mapbox Entegrasyon Alanı ]</p>
           
-          {/* Harita üzerinde aktif mahalleyi gösteren yapay bir pin (iğne) */}
           <div style={{ 
             position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)',
             backgroundColor: '#d32f2f', color: '#fff', padding: '6px 12px', borderRadius: '20px',
