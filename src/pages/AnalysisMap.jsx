@@ -5,7 +5,6 @@ function AnalysisMap() {
   const [secilenMahalle, setSecilenMahalle] = useState('Cumhuriyet Mahallesi')
   const [filtre, setFiltre] = useState('Tümü')
 
-  // HATA DÜZELTİLDİ: mahalleVerileri birleşik yazıldı
   const mahalleVerileri = {
     'Cumhuriyet Mahallesi': { gida: 12, yakacak: 8, egitim: 5, durum: '🔴 Kritik (25+ İhtiyaç)' },
     'Atatürk Mahallesi': { gida: 3, yakacak: 2, egitim: 7, durum: '🟡 Orta Seviye (12 İhtiyaç)' },
@@ -62,7 +61,7 @@ function AnalysisMap() {
         
         {/* Sol Taraf: Harita Görsel Simülasyonu */}
         <div style={{ 
-          flex: '1.5', minWidth: '320px', backgroundColor: '#eceff1', height: '300px', 
+          flex: '1.5', minWidth: '320px', backgroundColor: '#eceff1', height: '360px', 
           borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', 
           justifyContent: 'center', border: '2px dashed #b0bec5', position: 'relative'
         }}>
@@ -79,7 +78,7 @@ function AnalysisMap() {
           </div>
         </div>
 
-        {/* Sağ Taraf: Dinamik Detay Kartı */}
+        {/* Sağ Taraf: Dinamik Detay Kartı (Son Durum Bilgisi Buraya Eklendi) */}
         <div style={{ 
           flex: '1', minWidth: '280px', backgroundColor: '#fff', padding: '25px', 
           borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #e0e0e0' 
@@ -89,7 +88,7 @@ function AnalysisMap() {
             Yoğunluk Durumu: {aktifVeri.durum}
           </span>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
             {(filtre === 'Tümü' || filtre === 'Gıda') && (
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f5f5f5' }}>
                 <span style={{ color: '#546e7a' }}>🌾 Gıda Yardımı Talebi:</span>
@@ -110,8 +109,17 @@ function AnalysisMap() {
             )}
           </div>
 
+          {/* 🌟 SITE HARITASINDAKI "SON DURUM" BÖLÜMÜ EKLEMESİ */}
+          <div style={{ backgroundColor: '#f1f8e9', padding: '12px 15px', borderRadius: '8px', border: '1px solid #c8e6c9', marginBottom: '15px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#1b5e20', display: 'block', marginBottom: '6px' }}>📋 Son Durum</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px', color: '#33691e' }}>
+              <span>✔️ 8 ihtiyaç karşılandı</span>
+              <span>✔️ 3 yeni gönüllü katıldı</span>
+            </div>
+          </div>
+
           <button style={{ 
-            width: '100%', marginTop: '20px', backgroundColor: '#1b5e20', color: '#fff', 
+            width: '100%', backgroundColor: '#1b5e20', color: '#fff', 
             border: 'none', padding: '10px', borderRadius: '6px', fontWeight: '600', 
             cursor: 'pointer', transition: 'background 0.2s' 
           }}>
