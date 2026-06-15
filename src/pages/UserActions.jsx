@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
 function UserActions() {
-  const [aktifForm, setAktifForm] = useState('login') // 'login' veya 'register'
+  const [aktifForm, setAktifForm] = useState('register') // Varsayılan olarak haritadaki ilk kutu (Gönüllü Ol) açık gelsin
   const [secilenRol, setSecilenRol] = useState('')
 
-  // Profesyonel Giriş Alanı Stili
   const inputStyle = {
     width: '100%',
     padding: '12px',
@@ -29,84 +28,119 @@ function UserActions() {
     boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
   })
 
+  // Yan Menü Link Stili
+  const menuLinkStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    padding: '12px 15px',
+    color: '#455a64',
+    fontSize: '14px',
+    fontWeight: '500',
+    textDecoration: 'none',
+    borderRadius: '8px',
+    backgroundColor: '#f8f9fa',
+    border: '1px solid #cfd8dc',
+    cursor: 'pointer',
+    transition: 'all 0.2s'
+  }
+
   return (
-    <div style={{ animation: 'fadeIn 0.4s ease-in', maxWidth: '480px', margin: '0 auto' }}>
-      
-      {/* Üst Sekme Seçimi */}
-      <div style={{ display: 'flex', backgroundColor: '#eceff1', padding: '6px', borderRadius: '10px', marginBottom: '30px' }}>
+    <div style={{ animation: 'fadeIn 0.4s ease-in' }}>
+      <h2 style={{ color: '#263238', marginBottom: '10px' }}>👤 Kullanıcı İşlemleri Paneli</h2>
+      <p style={{ color: '#546e7a', marginBottom: '30px' }}>
+        Hesabınıza giriş yapın, gönüllü ağımıza katılın veya profil ayarlarınızı yönetin.
+      </p>
+
+      {/* Üst Sekme Seçimi (Kayıt Ol ismi Gönüllü Ol olarak değiştirildi) */}
+      <div style={{ display: 'flex', backgroundColor: '#eceff1', padding: '6px', borderRadius: '10px', marginBottom: '30px', maxWidth: '500px', margin: '0 auto 30px auto' }}>
+        <button 
+          onClick={() => setAktifForm('register')}
+          style={{ flex: '1', padding: '10px', borderRadius: '8px', border: 'none', backgroundColor: aktifForm === 'register' ? '#fff' : 'transparent', fontWeight: aktifForm === 'register' ? 'bold' : '500', color: aktifForm === 'register' ? '#1b5e20' : '#546e7a', cursor: 'pointer', transition: 'all 0.2s' }}
+        >
+          👥 Gönüllü Ol
+        </button>
         <button 
           onClick={() => setAktifForm('login')}
           style={{ flex: '1', padding: '10px', borderRadius: '8px', border: 'none', backgroundColor: aktifForm === 'login' ? '#fff' : 'transparent', fontWeight: aktifForm === 'login' ? 'bold' : '500', color: aktifForm === 'login' ? '#1b5e20' : '#546e7a', cursor: 'pointer', transition: 'all 0.2s' }}
         >
           🔑 Giriş Yap
         </button>
-        <button 
-          onClick={() => setAktifForm('register')}
-          style={{ flex: '1', padding: '10px', borderRadius: '8px', border: 'none', backgroundColor: aktifForm === 'register' ? '#fff' : 'transparent', fontWeight: aktifForm === 'register' ? 'bold' : '500', color: aktifForm === 'register' ? '#1b5e20' : '#546e7a', cursor: 'pointer', transition: 'all 0.2s' }}
-        >
-          📝 Kayıt Ol
-        </button>
       </div>
 
-      {/* Form Gövdesi */}
-      <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '16px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '1px solid #e0e0e0' }}>
+      {/* GÖRSELDEKİ EKSİKSİZ DÜZEN: Formlar ve Profil Menüsü Yana Yana */}
+      <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'center' }}>
         
-        {aktifForm === 'login' ? (
-          <div>
-            <h3 style={{ margin: '0 0 8px 0', color: '#263238' }}>Tekrar Hoş Geldiniz</h3>
-            <p style={{ margin: '0 0 25px 0', color: '#78909c', fontSize: '13px' }}>Mahallenizin nabzını tutmak için hesabınıza giriş yapın.</p>
-            
-            <form onSubmit={(e) => e.preventDefault()}>
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>E-Posta Adresi</label>
-              <input type="email" placeholder="ornek@mahalle.com" style={inputStyle} />
-              
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Şifre</label>
-              <input type="password" placeholder="••••••••" style={inputStyle} />
-              
-              <div style={{ textAlignment: 'right', marginBottom: '20px' }}>
-                <a href="#unuttum" style={{ color: '#2e7d32', fontSize: '12px', textDecoration: 'none', fontWeight: '500' }}>Şifremi Unuttum</a>
+        {/* Sol/Orta Taraf: Aktif Form Alanı */}
+        <div style={{ flex: '1.5', minWidth: '320px', maxWidth: '500px', backgroundColor: '#fff', padding: '30px', borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #e0e0e0' }}>
+          
+          {aktifForm === 'register' ? (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                <span style={{ fontSize: '24px' }}>👥</span>
+                <h3 style={{ margin: '0', color: '#263238' }}>Gönüllü Ol</h3>
               </div>
+              <p style={{ margin: '0 0 25px 0', color: '#78909c', fontSize: '13px' }}>Destek olmak için kayıt olabilirsiniz.</p>
               
-              <button style={buttonStyle('#2e7d32')}>Sisteme Giriş Yap</button>
-            </form>
-          </div>
-        ) : (
-          <div>
-            <h3 style={{ margin: '0 0 8px 0', color: '#263238' }}>Topluluğumuza Katılın</h3>
-            <p style={{ margin: '0 0 25px 0', color: '#78909c', fontSize: '13px' }}>Dayanışma ağının güvenli bir parçası olmak için formları doldurun.</p>
-            
-            <form onSubmit={(e) => e.preventDefault()}>
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Ad Soyad</label>
-              <input type="text" placeholder="Zehra Denizli" style={inputStyle} />
-              
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>E-Posta Adresi</label>
-              <input type="email" placeholder="ornek@mahalle.com" style={inputStyle} />
+              <form onSubmit={(e) => e.preventDefault()}>
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Ad Soyad</label>
+                <input type="text" placeholder="Zehra Denizli" style={inputStyle} />
+                
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>E-Posta Adresi</label>
+                <input type="email" placeholder="ornek@mahalle.com" style={inputStyle} />
 
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Platform Rolünüz</label>
-              <select 
-                value={secilenRol} 
-                onChange={(e) => setSecilenRol(e.target.value)}
-                style={inputStyle}
-              >
-                <option value="">Lütfen rol seçiniz...</option>
-                <option value="gonullu">❤️ Mahalle Gönüllüsü (Destek Vermek İçin)</option>
-                <option value="ihtiyac">🏠 İhtiyaç Sahibi (Destek Almak İçin)</option>
-                <option value="muhtar">🛡️ Mahalle Muhtarı (Doğrulayıcı Yetkilisi)</option>
-              </select>
-
-              {/* Seçilen Role Göre Dinamik Olarak Değişen Bilgilendirme Notu */}
-              {secilenRol && (
-                <div style={{ padding: '12px', borderRadius: '8px', backgroundColor: '#f0f4c3', color: '#33691e', fontSize: '12px', fontWeight: '500', marginBottom: '20px', lineHeight: '1.4' }}>
-                  {secilenRol === 'gonullu' && "💡 Gönüllü olarak kaydolduğunuzda mahallenizdeki anonim ihtiyaçları haritadan görebilir ve üstlenebilirsiniz."}
-                  {secilenRol === 'ihtiyac' && "🔒 İhtiyaç sahibi rolünde kimliğiniz muhtarınız hariç tüm sisteme tamamen gizli tutulacaktır."}
-                  {secilenRol === 'muhtar' && "⚠️ Muhtar kayıtları resmi evrak ve muhtarlık doğrulama sürecine tabi tutulmaktadır."}
-                </div>
-              )}
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Platform Rolünüz</label>
+                <select value={secilenRol} onChange={(e) => setSecilenRol(e.target.value)} style={inputStyle}>
+                  <option value="">Lütfen rol seçiniz...</option>
+                  <option value="gonullu">❤️ Mahalle Gönüllüsü</option>
+                  <option value="ihtiyac">🏠 İhtiyaç Sahibi</option>
+                  <option value="muhtar">🛡️ Mahalle Muhtarı</option>
+                </select>
+                
+                <button style={buttonStyle('#1565c0')}>Kayıt Ol</button>
+              </form>
+            </div>
+          ) : (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                <span style={{ fontSize: '24px' }}>👤</span>
+                <h3 style={{ margin: '0', color: '#263238' }}>Giriş Yap</h3>
+              </div>
+              <p style={{ margin: '0 0 25px 0', color: '#78909c', fontSize: '13px' }}>Hesabınıza giriş yaparak daha fazla destek sağlayın.</p>
               
-              <button style={buttonStyle('#1565c0')}>Hesabımı Oluştur</button>
-            </form>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>E-Posta Adresi</label>
+                <input type="email" placeholder="ornek@mahalle.com" style={inputStyle} />
+                
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#455a64', display: 'block', marginBottom: '6px' }}>Şifre</label>
+                <input type="password" placeholder="••••••••" style={inputStyle} />
+                
+                <button style={buttonStyle('#2e7d32')}>Giriş Yap</button>
+              </form>
+            </div>
+          )}
+
+        </div>
+
+        {/* 🌟 2. GÖRSELDEKİ EKSİKSİZ "PROFİL YAN MENÜSÜ" KUTUSU */}
+        <div style={{ 
+          flex: '1', minWidth: '260px', maxWidth: '320px', backgroundColor: '#fff', padding: '25px', 
+          borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #e0e0e0',
+          display: 'flex', flexDirection: 'column', gap: '10px'
+        }}>
+          <h4 style={{ margin: '0 0 10px 0', color: '#37474f', fontSize: '15px', borderBottom: '2px solid #f5f5f5', paddingBottom: '8px' }}>
+            ⚙️ Profil Paneli
+          </h4>
+          
+          <div style={menuLinkStyle}>👤 Profilim</div>
+          <div style={menuLinkStyle}>🤝 Destek Geçmişim</div>
+          <div style={menuLinkStyle}>🔔 Bildirimlerim</div>
+          <div style={menuLinkStyle}>🛠️ Ayarlar</div>
+          
+          <div style={{ ...menuLinkStyle, color: '#c62828', backgroundColor: '#ffebee', borderColor: '#ffcdd2', marginTop: '10px' }}>
+            🚪 Çıkış Yap
           </div>
-        )}
+        </div>
 
       </div>
     </div>
