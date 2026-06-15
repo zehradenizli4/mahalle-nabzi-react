@@ -1,37 +1,47 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import AnalysisMap from './pages/AnalysisMap'
 import ImpactSuccess from './pages/ImpactSuccess'
 import UserActions from './pages/UserActions'
 import PrivacySecurity from './pages/PrivacySecurity'
-import ContactSupport from './pages/ContactSupport' // Son modülü ekledik
+import ContactSupport from './pages/ContactSupport'
 
 function App() {
   return (
-    <div>
+    <div style={{ 
+      fontFamily: "'Segoe UI', Roboto, sans-serif", 
+      backgroundColor: '#f7f9fa', 
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      {/* Her sayfada sabit kalacak modern menümüz */}
       <Navbar />
       
-      <Home />
-      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
+      {/* Sayfa İçerik Alanı: Linklere tıklandıkça sadece burası değişecek */}
+      <main style={{ flex: '1', padding: '40px 20px', maxWidth: '1200px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/analiz" element={<AnalysisMap />} />
+          <Route path="/etki" element={<ImpactSuccess />} />
+          <Route path="/kullanici" element={<UserActions />} />
+          <Route path="/guvenlik" element={<PrivacySecurity />} />
+          <Route path="/iletisim" element={<ContactSupport />} />
+        </Routes>
+      </main>
       
-      <AnalysisMap />
-      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
-      
-      <ImpactSuccess />
-      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
-      
-      <UserActions />
-      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
-      
-      <PrivacySecurity />
-      <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #ccc' }} />
-      
-      {/* Son eklediğimiz modül */}
-      <ContactSupport />
-      
-      <footer style={{ textAlign: 'center', padding: '20px', background: '#f1f1f1', marginTop: '40px' }}>
-        <p>© 2026 MahalleNabzı Dijital Dayanışma Platformu</p>
+      {/* Her sayfanın altında şık duracak kurumsal alt bilgi */}
+      <footer style={{ 
+        textAlign: 'center', 
+        padding: '20px', 
+        background: '#263238', 
+        color: '#b0bec5',
+        fontSize: '14px',
+        borderTop: '3px solid #2e7d32'
+      }}>
+        <p>© 2026 MahalleNabzı Dijital Dayanışma Platformu | Geleceğin Mahalle Kültürü</p>
       </footer>
     </div>
   )
